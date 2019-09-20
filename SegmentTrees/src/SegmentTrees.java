@@ -87,7 +87,7 @@ public class SegmentTrees {
 	public static int update(int position, int value, Node root) {
 		
 			if(position > root.segment.end || position < root.segment.start)
-				return 0;
+				return root.sum;
 			
 			else if((root.segment.start == root.segment.end) && 
 					(root.segment.start == position)) {
@@ -96,8 +96,10 @@ public class SegmentTrees {
 				return root.sum;
 		}
 			
-			else 
-				return update(position,value,root.lchild) + update(position,value,root.rchild);
+			else {
+				root.sum =  update(position,value,root.lchild) + update(position,value,root.rchild);
+				return root.sum;
+			}
 		
 		
 	}
